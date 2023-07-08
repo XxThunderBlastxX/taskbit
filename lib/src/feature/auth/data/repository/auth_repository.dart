@@ -8,7 +8,7 @@ import '../../../../app/utils/utils.dart';
 import '../../../../provider/provider.dart';
 import '../interface/auth_interface.dart';
 
-final authRepositoryProvider = Provider.autoDispose<AuthRepository>(
+final authRepositoryProvider = Provider<AuthRepository>(
   (ref) => AuthRepository(
     account: ref.watch(accountProvider),
     localStorage: ref.watch(localStorageProvider),

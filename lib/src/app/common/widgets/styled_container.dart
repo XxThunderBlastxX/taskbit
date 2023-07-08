@@ -32,19 +32,18 @@ class _StyledContainerState extends State<StyledContainer> {
     return GestureDetector(
       onTapDown: (details) => widget.clickable
           ? {
-              setState(() {
-                isElevated = !isElevated;
-              }),
-              widget.onTap
+              setState(() => isElevated = !isElevated),
+              Future.delayed(const Duration(milliseconds: 131)).whenComplete(
+                () => widget.onTap?.call(),
+              )
             }
           : null,
-      onTapUp: (details) => widget.clickable
-          ? setState(() {
-              isElevated = !isElevated;
-            })
-          : null,
+      onTapCancel: () =>
+          widget.clickable ? setState(() => isElevated = !isElevated) : null,
+      onTapUp: (details) =>
+          widget.clickable ? setState(() => isElevated = !isElevated) : null,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
+        duration: const Duration(milliseconds: 130),
         curve: Curves.bounceInOut,
         width: widget.width ?? 130.w,
         height: widget.height ?? 50.h,
@@ -58,15 +57,15 @@ class _StyledContainerState extends State<StyledContainer> {
           borderRadius: BorderRadius.circular(16.r),
           border: Border.all(
             color: Colors.black,
-            width: 1.6,
+            width: 2.8,
           ),
           boxShadow: [
             isElevated
                 ? BoxShadow(
                     color: Colors.black,
                     blurRadius: 0,
-                    spreadRadius: 1.8.r,
-                    offset: Offset(1.8.w, 1.8.h),
+                    spreadRadius: 0.8.r,
+                    offset: Offset(3.5.w, 3.h),
                   )
                 : const BoxShadow(),
           ],
