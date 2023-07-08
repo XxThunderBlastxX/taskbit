@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:taskbit/src/app/common/widgets/styled_alert_dialog.dart';
-import 'package:taskbit/src/app/common/widgets/styled_snackbar.dart';
 
-import '../../../../app/common/widgets/styled_container.dart';
+import '../../../../app/common/widgets/widgets.dart';
 import '../../../../app/router/router.dart';
 import '../../../../app/theme/theme.dart';
 import '../provider/login_notifier.dart';
