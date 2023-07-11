@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../app/common/utils/random_avatar.dart';
 import '../../../app/theme/theme.dart';
 import '../../../provider/global_providers.dart';
+import '../../completed_tasks/presentation/completed_screen.dart';
+import '../../on_progress_tasks/presentation/on_progress_screen.dart';
 
 class TasksScreen extends ConsumerWidget {
   const TasksScreen({super.key});
@@ -53,14 +55,11 @@ class TasksScreen extends ConsumerWidget {
             ),
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
+          physics: BouncingScrollPhysics(),
           children: [
-            const Center(
-              child: Text('Tasks'),
-            ),
-            const Center(
-              child: Text('Completed'),
-            ),
+            OnProgressScreen(),
+            CompletedScreen(),
           ],
         ),
       ),
