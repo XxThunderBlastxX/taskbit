@@ -16,34 +16,53 @@ class TasksScreen extends ConsumerWidget {
       randomAvatarProvider(localUser?.name ?? 'Anonymous'),
     );
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: CircleAvatar(
-          backgroundColor: Colors.black87,
-          child: Padding(
-            padding: const EdgeInsets.all(3.5),
-            child: avatar,
-          ),
-        ),
-        leadingWidth: 80.w,
-        title: RichText(
-          text: TextSpan(
-            text: 'Hello,',
-            style: AppTheme.theme.textTheme.labelSmall!.copyWith(
-              color: Colors.black54,
-              fontSize: 14.sp,
+    return DefaultTabController(
+      length: 2,
+      initialIndex: 0,
+      animationDuration: const Duration(milliseconds: 280),
+      child: Scaffold(
+        appBar: AppBar(
+          leading: CircleAvatar(
+            backgroundColor: Colors.black87,
+            child: Padding(
+              padding: const EdgeInsets.all(3.5),
+              child: avatar,
             ),
-            children: [
-              TextSpan(
-                text: '\n${localUser?.name}',
-                style: AppTheme.theme.textTheme.labelSmall!,
-              ),
+          ),
+          leadingWidth: 80.w,
+          bottom: const TabBar(
+            physics: BouncingScrollPhysics(),
+            tabs: [
+              Tab(text: 'On Progress'),
+              Tab(text: 'Completed'),
             ],
           ),
+          title: RichText(
+            text: TextSpan(
+              text: 'Hello,',
+              style: AppTheme.theme.textTheme.labelSmall!.copyWith(
+                color: Colors.black54,
+                fontSize: 13.sp,
+              ),
+              children: [
+                TextSpan(
+                  text: '\n${localUser?.name}',
+                  style: AppTheme.theme.textTheme.labelSmall!,
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
-      body: const Center(
-        child: Text('Tasks'),
+        body: TabBarView(
+          children: [
+            const Center(
+              child: Text('Tasks'),
+            ),
+            const Center(
+              child: Text('Completed'),
+            ),
+          ],
+        ),
       ),
     );
   }
