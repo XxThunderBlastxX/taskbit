@@ -9,7 +9,7 @@ import '../models/user/user.dart';
 
 final clientProvider = Provider<Client>(
   name: "appwriteClientProvider",
-  (ref) {
+      (ref) {
     return Client()
       ..setEndpoint(ref.read(envProvider('APPWRITE_ENDPOINT')))
       ..setProject(ref.read(envProvider('APPWRITE_PROJECT_ID')))
@@ -19,22 +19,26 @@ final clientProvider = Provider<Client>(
 
 final accountProvider = Provider<Account>(
   name: "appwriteAccountProvider",
-  (ref) {
+      (ref) {
     return Account(ref.watch(clientProvider));
   },
 );
 
 final envProvider = Provider.family<String, String>(
   name: "envProvider",
-  (ref, key) {
+      (ref, key) {
     return dotenv.get(key, fallback: '');
   },
 );
 
 final localUserProvider = StateProvider<User?>(
-  (ref) {
+      (ref) {
     final String? email = ref.watch(localStorageProvider).read(key: 'email');
     final String? name = ref.watch(localStorageProvider).read(key: 'name');
+
+
+    print(email);
+    print(name);
 
     if (email == '' || name == '' || email == null || name == null) {
       return null;
@@ -53,7 +57,7 @@ final authStateProvider = FutureProvider.autoDispose<models.User?>((ref) async {
   final res = await authProvider.getCurrentUser();
 
   return res.fold(
-    (user) => user,
-    (failure) => null,
+        (user) => user,
+        (failure) => null,
   );
 });

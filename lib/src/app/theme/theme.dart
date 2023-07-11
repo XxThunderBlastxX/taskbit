@@ -14,35 +14,79 @@ class AppTheme {
   static ThemeData theme = ThemeData(
     scaffoldBackgroundColor: const Color(0xFFF8EDEB),
     useMaterial3: true,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      centerTitle: false,
+      toolbarHeight: 47.h,
+      titleTextStyle: GoogleFonts.bungee(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w800,
+        color: Colors.black87,
+      ),
+    ),
+    fontFamily: GoogleFonts.bungee().fontFamily,
+    primaryTextTheme: TextTheme(
+      bodyLarge: GoogleFonts.bungee(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w400,
+        color: Colors.black87,
+      ),
+      bodyMedium: GoogleFonts.bungee(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w400,
+        color: Colors.black87,
+      ),
+      bodySmall: GoogleFonts.bungee(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w400,
+        color: Colors.black87,
+      ),
+      labelLarge: GoogleFonts.bungee(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.w800,
+        color: Colors.black87,
+      ),
+      labelMedium: GoogleFonts.bungee(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w800,
+        color: Colors.black87,
+      ),
+      labelSmall: GoogleFonts.bungee(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w800,
+        color: Colors.black87,
+      ),
+    ),
     textTheme: TextTheme(
-      bodyLarge: GoogleFonts.roboto(
+      bodyLarge: GoogleFonts.bungee(
         fontSize: 24.sp,
         fontWeight: FontWeight.w400,
         color: Colors.black87,
       ),
-      bodyMedium: GoogleFonts.roboto(
+      bodyMedium: GoogleFonts.bungee(
         fontSize: 20.sp,
         fontWeight: FontWeight.w400,
         color: Colors.black87,
       ),
-      bodySmall: GoogleFonts.roboto(
+      bodySmall: GoogleFonts.bungee(
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
         color: Colors.black87,
       ),
-      labelLarge: GoogleFonts.roboto(
+      labelLarge: GoogleFonts.bungee(
         fontSize: 24.sp,
-        fontWeight: FontWeight.w800,
+        fontWeight: FontWeight.w700,
         color: Colors.black87,
       ),
-      labelMedium: GoogleFonts.roboto(
+      labelMedium: GoogleFonts.bungee(
         fontSize: 20.sp,
-        fontWeight: FontWeight.w800,
+        fontWeight: FontWeight.w700,
         color: Colors.black87,
       ),
-      labelSmall: GoogleFonts.roboto(
+      labelSmall: GoogleFonts.bungee(
         fontSize: 16.sp,
-        fontWeight: FontWeight.w800,
+        fontWeight: FontWeight.w700,
         color: Colors.black87,
       ),
     ),

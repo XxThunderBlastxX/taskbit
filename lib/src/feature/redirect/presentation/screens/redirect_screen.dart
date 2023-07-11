@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/router.dart';
+import '../../../../models/user/user.dart';
 import '../../../../provider/global_providers.dart';
 
 class RedirectScreen extends ConsumerWidget {
@@ -11,7 +12,6 @@ class RedirectScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authStateProvider);
-    final localUser = ref.watch(localUserProvider);
 
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
@@ -19,10 +19,8 @@ class RedirectScreen extends ConsumerWidget {
           data: (data) => data?.email == null
               ? context.replace(AppRouterPath.auth)
               : {
-                  localUser?.copyWith(
-                    email: data!.email,
-                    name: data.name,
-                  ),
+                  ref.watch(localUserProvider.notifier).state =
+                      User(name: data!.name, email: data.email),
                   context.replace(AppRouterPath.tasks)
                 },
           error: (err, stackTrace) => context.replace(AppRouterPath.auth),

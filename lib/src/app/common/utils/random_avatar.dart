@@ -8,6 +8,10 @@ final randomAvatarProvider = Provider.family<Widget, String>((ref, str) {
 
 class RandomAvatar {
   static Widget getRandomAvatar(String str) {
-    return avatar.RandomAvatar(str);
+    return avatar.RandomAvatar(
+      str,
+      width: 100,
+      height: 100,
+    );
   }
 }
