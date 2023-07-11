@@ -11,13 +11,20 @@ class RedirectScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authStateProvider);
+    final localUser = ref.watch(localUserProvider);
 
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         authState.when(
           data: (data) => data?.email == null
               ? context.replace(AppRouterPath.auth)
-              : context.replace(AppRouterPath.tasks),
+              : {
+                  localUser?.copyWith(
+                    email: data!.email,
+                    name: data.name,
+                  ),
+                  context.replace(AppRouterPath.tasks)
+                },
           error: (err, stackTrace) => context.replace(AppRouterPath.auth),
           loading: () {},
         );

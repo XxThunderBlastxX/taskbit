@@ -1,32 +1,32 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
+  throw UnimplementedError();
+});
 
 final localStorageProvider = Provider<LocalStorage>((ref) {
-  return LocalStorage(storage: const FlutterSecureStorage());
+  return LocalStorage(pref: ref.watch(sharedPreferencesProvider));
 });
 
 class LocalStorage {
-  final FlutterSecureStorage _storage;
+  final SharedPreferences _pref;
 
-  LocalStorage({required FlutterSecureStorage storage}) : _storage = storage;
+  LocalStorage({required SharedPreferences pref}) : _pref = pref;
 
   Future<void> write({required String key, required String value}) async {
-    await _storage.write(key: key, value: value);
+    await _pref.setString(key, value);
   }
 
-  Future<String?> read({required String key}) async {
-    return await _storage.read(key: key);
-  }
-
-  Future<Map<String, String>> readAll() async {
-    return await _storage.readAll();
+  String? read({required String key}) {
+    return _pref.getString(key);
   }
 
   Future<void> delete({required String key}) async {
-    await _storage.delete(key: key);
+    await _pref.remove(key);
   }
 
-  Future<void> deleteAll() async {
-    await _storage.deleteAll();
+  bool containsKey({required String key}) {
+    return _pref.containsKey(key);
   }
 }

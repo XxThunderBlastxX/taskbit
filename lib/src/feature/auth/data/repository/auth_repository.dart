@@ -59,7 +59,8 @@ class AuthRepository implements IAuth {
       _log.i("Signing out...👋");
       await _account.deleteSession(sessionId: 'current');
 
-      await _localStorage.deleteAll();
+      await _localStorage.delete(key: 'email');
+      await _localStorage.delete(key: 'name');
 
       _log.i("Signed out successfully 🎉");
       return null;

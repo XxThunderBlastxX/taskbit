@@ -2,8 +2,9 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:taskbit/src/feature/auth/data/repository/auth_repository.dart';
+import 'package:taskbit/src/app/utils/local_storage.dart';
 
+import '../feature/auth/data/repository/auth_repository.dart';
 import '../models/user/user.dart';
 
 final clientProvider = Provider<Client>(
@@ -30,12 +31,12 @@ final envProvider = Provider.family<String, String>(
   },
 );
 
-final localUserProvider = Provider<User?>(
+final localUserProvider = StateProvider<User?>(
   (ref) {
-    final String email = ref.read(envProvider('email'));
-    final String name = ref.read(envProvider('name'));
+    final String? email = ref.watch(localStorageProvider).read(key: 'email');
+    final String? name = ref.watch(localStorageProvider).read(key: 'name');
 
-    if (email == '' || name == '') {
+    if (email == '' || name == '' || email == null || name == null) {
       return null;
     } else {
       return User(
