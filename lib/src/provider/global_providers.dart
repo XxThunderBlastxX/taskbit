@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app/utils/local_storage.dart';
 import '../feature/auth/data/repository/auth_repository.dart';
-import '../models/user/user.dart';
+import '../feature/auth/domain/model/user/user.dart';
 
 final clientProvider = Provider<Client>(
   name: "appwriteClientProvider",

@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/router.dart';
-import '../../../../models/user/user.dart';
 import '../../../../provider/global_providers.dart';
+import '../../../auth/domain/model/user/user.dart';
 
 class RedirectScreen extends ConsumerWidget {
   const RedirectScreen({super.key});
