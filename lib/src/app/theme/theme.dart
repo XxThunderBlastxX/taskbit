@@ -60,7 +60,7 @@ class AppTheme {
         color: Colors.black87,
       ),
       labelSmall: GoogleFonts.bungee(
-        fontSize: 14.sp,
+        fontSize: 16.sp,
         fontWeight: FontWeight.w500,
         color: Colors.black87,
       ),
