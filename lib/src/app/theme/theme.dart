@@ -33,67 +33,35 @@ class AppTheme {
       splashFactory: InkRipple.splashFactory,
       indicatorSize: TabBarIndicatorSize.label,
     ),
-    primaryTextTheme: TextTheme(
-      bodyLarge: GoogleFonts.bungee(
-        fontSize: 24.sp,
-        fontWeight: FontWeight.w400,
-        color: Colors.black87,
-      ),
-      bodyMedium: GoogleFonts.bungee(
-        fontSize: 20.sp,
-        fontWeight: FontWeight.w400,
-        color: Colors.black87,
-      ),
-      bodySmall: GoogleFonts.bungee(
-        fontSize: 16.sp,
-        fontWeight: FontWeight.w400,
-        color: Colors.black87,
-      ),
-      labelLarge: GoogleFonts.bungee(
-        fontSize: 24.sp,
-        fontWeight: FontWeight.w800,
-        color: Colors.black87,
-      ),
-      labelMedium: GoogleFonts.bungee(
-        fontSize: 20.sp,
-        fontWeight: FontWeight.w800,
-        color: Colors.black87,
-      ),
-      labelSmall: GoogleFonts.bungee(
-        fontSize: 16.sp,
-        fontWeight: FontWeight.w800,
-        color: Colors.black87,
-      ),
-    ),
     textTheme: TextTheme(
       bodyLarge: GoogleFonts.bungee(
         fontSize: 24.sp,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
         color: Colors.black87,
       ),
       bodyMedium: GoogleFonts.bungee(
         fontSize: 20.sp,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
         color: Colors.black87,
       ),
       bodySmall: GoogleFonts.bungee(
         fontSize: 16.sp,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
         color: Colors.black87,
       ),
       labelLarge: GoogleFonts.bungee(
         fontSize: 24.sp,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w500,
         color: Colors.black87,
       ),
       labelMedium: GoogleFonts.bungee(
         fontSize: 20.sp,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w500,
         color: Colors.black87,
       ),
       labelSmall: GoogleFonts.bungee(
-        fontSize: 16.sp,
-        fontWeight: FontWeight.w700,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
         color: Colors.black87,
       ),
     ),

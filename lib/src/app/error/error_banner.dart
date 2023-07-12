@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../theme/theme.dart';
+import '../theme/theme.dart';
 
-extension StyledSnackbar on BuildContext {
-  void styledSnackbar(String message, {int? statusCode}) {
+extension ErrorBanner on BuildContext {
+  void errorBanner(String message, {int? statusCode}) {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         showCloseIcon: true,

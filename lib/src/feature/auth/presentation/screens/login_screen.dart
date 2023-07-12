@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/common/widgets/widgets.dart';
+import '../../../../app/error/error.dart';
 import '../../../../app/router/router.dart';
 import '../../../../app/theme/theme.dart';
 import '../provider/login_notifier.dart';
@@ -30,7 +31,7 @@ class LoginScreen extends ConsumerWidget {
           );
         } else if (next is LoginError) {
           context.pop();
-          context.styledSnackbar(
+          context.errorBanner(
             next.failure.message,
             statusCode: next.failure.code,
           );
@@ -48,6 +49,8 @@ class LoginScreen extends ConsumerWidget {
           backgroundColor: const Color(0xFFCDB4DB),
           clickable: true,
           onTap: () => onClickSignIn(ref),
+          width: 160.w,
+          height: 60.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +63,9 @@ class LoginScreen extends ConsumerWidget {
               ),
               Text(
                 'Sign in',
-                style: AppTheme.theme.textTheme.labelMedium,
+                style: AppTheme.theme.textTheme.labelMedium!.copyWith(
+                  fontSize: 17.sp,
+                ),
               ),
             ],
           ),
