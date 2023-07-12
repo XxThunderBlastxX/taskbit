@@ -31,15 +31,22 @@ final envProvider = Provider.family<String, String>(
   },
 );
 
-final localUserProvider = StateProvider<User?>(
+final localUserProvider = StateProvider<UserModel?>(
   (ref) {
+    final String? id = ref.watch(localStorageProvider).read(key: 'id');
     final String? email = ref.watch(localStorageProvider).read(key: 'email');
     final String? name = ref.watch(localStorageProvider).read(key: 'name');
 
-    if (email == '' || name == '' || email == null || name == null) {
+    if (email == '' ||
+        name == '' ||
+        email == null ||
+        name == null ||
+        id == '' ||
+        id == null) {
       return null;
     } else {
-      return User(
+      return UserModel(
+        id: id,
         email: email,
         name: name,
       );

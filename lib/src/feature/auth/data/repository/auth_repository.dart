@@ -38,6 +38,7 @@ class AuthRepository implements IAuth {
       final User user = await _account.get();
       await _localStorage.write(key: 'email', value: user.email);
       await _localStorage.write(key: 'name', value: user.name);
+      await _localStorage.write(key: 'id', value: user.$id);
 
       _log.i("Signed in with Google successfully 🎉");
       return null;
@@ -61,6 +62,7 @@ class AuthRepository implements IAuth {
 
       await _localStorage.delete(key: 'email');
       await _localStorage.delete(key: 'name');
+      await _localStorage.delete(key: 'id');
 
       _log.i("Signed out successfully 🎉");
       return null;

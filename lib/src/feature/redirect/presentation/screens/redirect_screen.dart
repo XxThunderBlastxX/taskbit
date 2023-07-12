@@ -19,8 +19,11 @@ class RedirectScreen extends ConsumerWidget {
           data: (data) => data?.email == null
               ? context.replace(AppRouterPath.auth)
               : {
-                  ref.watch(localUserProvider.notifier).state =
-                      User(name: data!.name, email: data.email),
+                  ref.watch(localUserProvider.notifier).state = UserModel(
+                    name: data!.name,
+                    email: data.email,
+                    id: data.$id,
+                  ),
                   context.replace(AppRouterPath.tasks)
                 },
           error: (err, stackTrace) => context.replace(AppRouterPath.auth),
