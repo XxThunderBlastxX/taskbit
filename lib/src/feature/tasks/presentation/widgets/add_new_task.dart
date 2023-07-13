@@ -7,6 +7,7 @@ import '../../../../app/common/widgets/styled_container.dart';
 import '../../../../app/common/widgets/styled_text_field.dart';
 import '../../../../app/theme/theme.dart';
 import '../../domain/model/task_model/task_model.dart';
+import '../provider/add_task_provider.dart';
 
 class AddNewTaskScreen extends ConsumerStatefulWidget {
   const AddNewTaskScreen({super.key});
@@ -18,6 +19,7 @@ class AddNewTaskScreen extends ConsumerStatefulWidget {
 class _AddNewTaskScreenState extends ConsumerState<AddNewTaskScreen> {
   @override
   Widget build(BuildContext context) {
+    final addTask = ref.watch(addTaskProvider.notifier);
     return SizedBox(
       width: double.infinity,
       child: Padding(
@@ -43,6 +45,8 @@ class _AddNewTaskScreenState extends ConsumerState<AddNewTaskScreen> {
             ),
             StyledTextField(
               hintText: 'Enter task name',
+              controller: addTask.titleController,
+              focusNode: addTask.titleFocusNode,
             ),
             16.verticalSpace,
             Text(
@@ -53,6 +57,8 @@ class _AddNewTaskScreenState extends ConsumerState<AddNewTaskScreen> {
               hintText: 'Enter Description of your task',
               maxLines: 4,
               keyboardType: TextInputType.multiline,
+              controller: addTask.descriptionController,
+              focusNode: addTask.descriptionFocusNode,
             ),
             16.verticalSpace,
             Text(
@@ -93,7 +99,10 @@ class _AddNewTaskScreenState extends ConsumerState<AddNewTaskScreen> {
                 StyledContainer(
                   backgroundColor: AppTheme.kLightBlueColor,
                   clickable: true,
-                  onTap: () {},
+                  onTap: () {
+                    context.pop();
+                    ref.watch(addTaskProvider.notifier).createTask();
+                  },
                   child: const Center(
                     child: Text('Add'),
                   ),

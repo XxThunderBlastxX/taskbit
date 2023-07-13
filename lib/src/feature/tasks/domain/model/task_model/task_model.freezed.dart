@@ -20,7 +20,7 @@ TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TaskModel {
-  String get id => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   bool get isComplete => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $TaskModelCopyWith<$Res> {
       _$TaskModelCopyWithImpl<$Res, TaskModel>;
   @useResult
   $Res call(
-      {String id,
+      {String userId,
       String title,
       String description,
       bool isComplete,
@@ -62,7 +62,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? userId = null,
     Object? title = null,
     Object? description = null,
     Object? isComplete = null,
@@ -71,9 +71,9 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -111,7 +111,7 @@ abstract class _$$_TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {String userId,
       String title,
       String description,
       bool isComplete,
@@ -131,7 +131,7 @@ class __$$_TaskModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? userId = null,
     Object? title = null,
     Object? description = null,
     Object? isComplete = null,
@@ -140,9 +140,9 @@ class __$$_TaskModelCopyWithImpl<$Res>
     Object? updatedAt = null,
   }) {
     return _then(_$_TaskModel(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -176,7 +176,7 @@ class __$$_TaskModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TaskModel implements _TaskModel {
   const _$_TaskModel(
-      {required this.id,
+      {required this.userId,
       required this.title,
       required this.description,
       required this.isComplete,
@@ -188,7 +188,7 @@ class _$_TaskModel implements _TaskModel {
       _$$_TaskModelFromJson(json);
 
   @override
-  final String id;
+  final String userId;
   @override
   final String title;
   @override
@@ -204,7 +204,7 @@ class _$_TaskModel implements _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(id: $id, title: $title, description: $description, isComplete: $isComplete, category: $category, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'TaskModel(userId: $userId, title: $title, description: $description, isComplete: $isComplete, category: $category, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -212,7 +212,7 @@ class _$_TaskModel implements _TaskModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TaskModel &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -228,7 +228,7 @@ class _$_TaskModel implements _TaskModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description,
+  int get hashCode => Object.hash(runtimeType, userId, title, description,
       isComplete, category, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
@@ -247,7 +247,7 @@ class _$_TaskModel implements _TaskModel {
 
 abstract class _TaskModel implements TaskModel {
   const factory _TaskModel(
-      {required final String id,
+      {required final String userId,
       required final String title,
       required final String description,
       required final bool isComplete,
@@ -259,7 +259,7 @@ abstract class _TaskModel implements TaskModel {
       _$_TaskModel.fromJson;
 
   @override
-  String get id;
+  String get userId;
   @override
   String get title;
   @override

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/common/utils/random_avatar.dart';
+import '../../../app/common/widgets/widgets.dart';
+import '../../../app/error/error.dart';
 import '../../../app/theme/theme.dart';
 import '../../../provider/global_providers.dart';
+import '../domain/state/add_task.dart';
+import 'provider/add_task_provider.dart';
 import 'widgets/add_new_task_header.dart';
 
 class TasksScreen extends ConsumerWidget {
@@ -16,6 +21,25 @@ class TasksScreen extends ConsumerWidget {
     final avatar = ref.watch(
       randomAvatarProvider(localUser?.name ?? 'Anonymous'),
     );
+
+    ref.listen(addTaskProvider, (previous, next) {
+      if (next is AddTaskLoading) {
+        showDialog(
+          context: context,
+          builder: (context) => StyledAlertDialog(
+            child: const CircularProgressIndicator(),
+          ),
+        );
+      } else if (next is AddTaskFailure) {
+        context.pop();
+        context.errorBanner(
+          next.message,
+          statusCode: next.code,
+        );
+      } else if (next is AddTaskSuccess) {
+        context.pop();
+      }
+    });
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -37,7 +61,7 @@ class TasksScreen extends ConsumerWidget {
             ),
             children: [
               TextSpan(
-                text: '\n${localUser?.name}',
+                text: '\n${localUser!.name}',
                 style: AppTheme.theme.textTheme.labelSmall!,
               ),
             ],

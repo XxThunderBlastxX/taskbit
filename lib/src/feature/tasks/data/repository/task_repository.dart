@@ -47,19 +47,20 @@ class TaskRepository extends ITask {
   }) async {
     try {
       _log.i('Creating task 🐥');
+      // TODO: Add collectionId
       final res = await _database.createDocument(
         databaseId: _databaseId,
-        collectionId: _user.id,
+        collectionId: "",
         documentId: _generateId.generateId(),
         data: task.toJson(),
       );
       _log.i('Task created 🎉');
       return Left(res);
     } on AppwriteException catch (err) {
-      _log.e('Error creating task ☹');
+      _log.e('Error creating task ☹ \n $err');
       return Right(Failure(message: err.message!, code: err.code!));
     } catch (err) {
-      _log.e('Error creating task ☹');
+      _log.e('Error creating task ☹\n $err');
       return Right(Failure(message: err.toString()));
     }
   }
@@ -69,9 +70,9 @@ class TaskRepository extends ITask {
     try {
       _log.i('Getting tasks list 🐥');
       final models.DocumentList docs = await _database.listDocuments(
-        databaseId: _databaseId,
-        collectionId: _user.id,
-      );
+          databaseId: _databaseId,
+          collectionId: _user.id,
+          queries: [Query.equal('attribute', 'value')]);
 
       _log.i('Successfully received tasks list 🎉');
       return Left(docs);
