@@ -64,6 +64,7 @@ class TaskRepository extends ITask {
         documentId: _generateId.generateId(),
         data: task.toJson(),
       );
+
       _log.i('Task created 🎉');
       return Left(res);
     } on AppwriteException catch (err) {
@@ -112,6 +113,7 @@ class TaskRepository extends ITask {
           'updatedAt': DateTime.now().toIso8601String().toString(),
         },
       );
+
       _log.i('Task($docId) set as completed 🎉');
       return Left(doc);
     } on AppwriteException catch (err) {
