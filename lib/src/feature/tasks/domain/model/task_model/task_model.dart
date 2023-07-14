@@ -8,6 +8,7 @@ enum TaskCategory { personal, work, general }
 @freezed
 class TaskModel with _$TaskModel {
   const factory TaskModel({
+    required String id,
     required String userId,
     required String title,
     required String description,

@@ -10,34 +10,45 @@ import '../../../auth/domain/model/user/user.dart';
 import '../../domain/model/task_model/task_model.dart';
 import '../interface/task_interface.dart';
 
-final taskDatabaseIdProvider = Provider.autoDispose<String>((ref) => 'taskbit');
+final databaseIdProvider = Provider.autoDispose<String>(
+    (ref) => ref.watch(envProvider('DATABASE_ID')));
+final collectionIdProvider = Provider.autoDispose<String>(
+    (ref) => ref.watch(envProvider('COLLECTION_ID')));
 
 final taskRepositoryProvider = Provider.autoDispose(
   (ref) => TaskRepository(
     database: Databases(ref.watch(clientProvider)),
+    functions: Functions(ref.watch(clientProvider)),
     user: ref.watch(localUserProvider)!,
     generateId: ref.watch(generateIdProvider),
     log: ref.watch(styledLogProvider),
-    databaseId: ref.watch(taskDatabaseIdProvider),
+    databaseId: ref.watch(databaseIdProvider),
+    collectionId: ref.watch(collectionIdProvider),
   ),
 );
 
 class TaskRepository extends ITask {
   late final Databases _database;
+  late final Functions _functions;
   late final UserModel _user;
   late final GenerateId _generateId;
   late final StyledLog _log;
   late final String _databaseId;
+  late final String _collectionId;
 
   TaskRepository({
     required Databases database,
+    required Functions functions,
     required UserModel user,
     required GenerateId generateId,
     required StyledLog log,
     required String databaseId,
+    required String collectionId,
   })  : _database = database,
+        _functions = functions,
         _generateId = generateId,
         _databaseId = databaseId,
+        _collectionId = collectionId,
         _log = log,
         _user = user;
 
@@ -47,10 +58,9 @@ class TaskRepository extends ITask {
   }) async {
     try {
       _log.i('Creating task 🐥');
-      // TODO: Add collectionId
       final res = await _database.createDocument(
         databaseId: _databaseId,
-        collectionId: "",
+        collectionId: _collectionId,
         documentId: _generateId.generateId(),
         data: task.toJson(),
       );
@@ -71,8 +81,10 @@ class TaskRepository extends ITask {
       _log.i('Getting tasks list 🐥');
       final models.DocumentList docs = await _database.listDocuments(
           databaseId: _databaseId,
-          collectionId: _user.id,
-          queries: [Query.equal('attribute', 'value')]);
+          collectionId: _collectionId,
+          queries: [
+            Query.equal('userId', _user.id),
+          ]);
 
       _log.i('Successfully received tasks list 🎉');
       return Left(docs);
@@ -93,10 +105,14 @@ class TaskRepository extends ITask {
       _log.i('Setting task($docId) as complete 🐥');
       final models.Document doc = await _database.updateDocument(
         databaseId: _databaseId,
-        collectionId: _user.id,
+        collectionId: _collectionId,
         documentId: docId,
+        data: {
+          'isComplete': true,
+          'updatedAt': DateTime.now().toIso8601String().toString(),
+        },
       );
-      _log.i('Task($docId) set as complete 🎉');
+      _log.i('Task($docId) set as completed 🎉');
       return Left(doc);
     } on AppwriteException catch (err) {
       return Right(Failure(message: err.message!, code: err.code!));
@@ -116,6 +132,12 @@ class TaskRepository extends ITask {
         databaseId: _databaseId,
         collectionId: _user.id,
         documentId: docId,
+        data: {
+          'title': task.title,
+          'description': task.description,
+          'isComplete': task.isComplete,
+          'updatedAt': DateTime.now().toIso8601String().toString(),
+        },
       );
 
       _log.i('Task($docId) updated 🎉');

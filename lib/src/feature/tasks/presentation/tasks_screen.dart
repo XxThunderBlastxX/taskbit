@@ -8,8 +8,8 @@ import '../../../app/common/widgets/widgets.dart';
 import '../../../app/error/error.dart';
 import '../../../app/theme/theme.dart';
 import '../../../provider/global_providers.dart';
-import '../domain/state/add_task.dart';
 import 'provider/add_task_provider.dart';
+import 'state/add_task.dart';
 import 'widgets/add_new_task_header.dart';
 
 class TasksScreen extends ConsumerWidget {
