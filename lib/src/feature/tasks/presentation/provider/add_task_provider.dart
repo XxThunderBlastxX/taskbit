@@ -34,6 +34,8 @@ class AddTask extends StateNotifier<AddTaskState> {
 
   TaskCategory taskCategory = TaskCategory.personal;
 
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   Future<void> createTask() async {
     state = AddTaskLoading();
     final res = await _taskRepository.createTask(

@@ -34,12 +34,18 @@ class StyledTextField extends ConsumerWidget {
           ),
         ],
       ),
-      child: TextField(
+      child: TextFormField(
         style: AppTheme.theme.textTheme.labelSmall,
         controller: controller,
         focusNode: focusNode,
         maxLines: maxLines,
         keyboardType: keyboardType,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,

@@ -41,26 +41,33 @@ class _AddNewTaskScreenState extends ConsumerState<AddNewTaskScreen> {
               indent: 0.06.sw,
               endIndent: 0.06.sw,
             ),
-            Text(
-              'Task Name',
-              style: AppTheme.theme.textTheme.labelSmall,
-            ),
-            StyledTextField(
-              hintText: 'Enter task name',
-              controller: addTask.titleController,
-              focusNode: addTask.titleFocusNode,
-            ),
-            16.verticalSpace,
-            Text(
-              'Description',
-              style: AppTheme.theme.textTheme.labelSmall,
-            ),
-            StyledTextField(
-              hintText: 'Enter Description of your task',
-              maxLines: 4,
-              keyboardType: TextInputType.multiline,
-              controller: addTask.descriptionController,
-              focusNode: addTask.descriptionFocusNode,
+            Form(
+              key: addTask.formKey,
+              child: Column(
+                children: [
+                  Text(
+                    'Task Name',
+                    style: AppTheme.theme.textTheme.labelSmall,
+                  ),
+                  StyledTextField(
+                    hintText: 'Enter task name',
+                    controller: addTask.titleController,
+                    focusNode: addTask.titleFocusNode,
+                  ),
+                  16.verticalSpace,
+                  Text(
+                    'Description',
+                    style: AppTheme.theme.textTheme.labelSmall,
+                  ),
+                  StyledTextField(
+                    hintText: 'Enter Description of your task',
+                    maxLines: 4,
+                    keyboardType: TextInputType.multiline,
+                    controller: addTask.descriptionController,
+                    focusNode: addTask.descriptionFocusNode,
+                  ),
+                ],
+              ),
             ),
             16.verticalSpace,
             Text(
@@ -121,6 +128,7 @@ class _AddNewTaskScreenState extends ConsumerState<AddNewTaskScreen> {
                   backgroundColor: AppTheme.kLightBlueColor,
                   clickable: true,
                   onTap: () {
+                    if (!addTask.formKey.currentState!.validate()) return;
                     context.pop();
                     ref.watch(addTaskProvider.notifier).createTask();
                   },
