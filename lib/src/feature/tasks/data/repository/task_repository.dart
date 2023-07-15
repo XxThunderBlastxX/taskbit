@@ -18,9 +18,7 @@ final collectionIdProvider = Provider.autoDispose<String>(
 final taskRepositoryProvider = Provider.autoDispose(
   (ref) => TaskRepository(
     database: Databases(ref.watch(clientProvider)),
-    functions: Functions(ref.watch(clientProvider)),
     user: ref.watch(localUserProvider)!,
-    generateId: ref.watch(generateIdProvider),
     log: ref.watch(styledLogProvider),
     databaseId: ref.watch(databaseIdProvider),
     collectionId: ref.watch(collectionIdProvider),
@@ -29,24 +27,18 @@ final taskRepositoryProvider = Provider.autoDispose(
 
 class TaskRepository extends ITask {
   late final Databases _database;
-  late final Functions _functions;
   late final UserModel _user;
-  late final GenerateId _generateId;
   late final StyledLog _log;
   late final String _databaseId;
   late final String _collectionId;
 
   TaskRepository({
     required Databases database,
-    required Functions functions,
     required UserModel user,
-    required GenerateId generateId,
     required StyledLog log,
     required String databaseId,
     required String collectionId,
   })  : _database = database,
-        _functions = functions,
-        _generateId = generateId,
         _databaseId = databaseId,
         _collectionId = collectionId,
         _log = log,
@@ -61,7 +53,7 @@ class TaskRepository extends ITask {
       final res = await _database.createDocument(
         databaseId: _databaseId,
         collectionId: _collectionId,
-        documentId: _generateId.generateId(),
+        documentId: ID.unique(),
         data: task.toJson(),
       );
 

@@ -30,5 +30,5 @@ Map<String, dynamic> _$$_TaskModelToJson(_$_TaskModel instance) =>
 const _$TaskCategoryEnumMap = {
   TaskCategory.personal: 'personal',
   TaskCategory.work: 'work',
-  TaskCategory.general: 'general',
+  TaskCategory.others: 'others',
 };

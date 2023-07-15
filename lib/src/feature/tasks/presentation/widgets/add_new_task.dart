@@ -8,6 +8,7 @@ import '../../../../app/common/widgets/styled_text_field.dart';
 import '../../../../app/theme/theme.dart';
 import '../../domain/model/task_model/task_model.dart';
 import '../provider/add_task_provider.dart';
+import 'category_radio_button.dart';
 
 class AddNewTaskScreen extends ConsumerStatefulWidget {
   const AddNewTaskScreen({super.key});
@@ -20,6 +21,7 @@ class _AddNewTaskScreenState extends ConsumerState<AddNewTaskScreen> {
   @override
   Widget build(BuildContext context) {
     final addTask = ref.watch(addTaskProvider.notifier);
+
     return SizedBox(
       width: double.infinity,
       child: Padding(
@@ -66,22 +68,41 @@ class _AddNewTaskScreenState extends ConsumerState<AddNewTaskScreen> {
               style: AppTheme.theme.textTheme.labelSmall,
             ),
             Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Wrap(
-                  children: [
-                    Radio(
-                      toggleable: true,
-                      value: TaskCategory.personal,
-                      groupValue: TaskCategory.personal,
-                      onChanged: (value) {
-                        print(value);
-                      },
-                    ),
-                    Text(
-                      'Personal',
-                      style: AppTheme.theme.textTheme.labelSmall,
-                    ),
-                  ],
+                CategoryRadioButton(
+                  label: 'Personal',
+                  color: AppTheme.kBlueColor,
+                  groupValue: addTask.taskCategory,
+                  categoryValue: TaskCategory.personal,
+                  onChanged: (value) {
+                    setState(() {
+                      addTask.taskCategory = value as TaskCategory;
+                    });
+                  },
+                ),
+                CategoryRadioButton(
+                  label: 'Work',
+                  color: AppTheme.kPurpleColor,
+                  groupValue: addTask.taskCategory,
+                  categoryValue: TaskCategory.work,
+                  onChanged: (value) {
+                    setState(() {
+                      addTask.taskCategory = value as TaskCategory;
+                    });
+                  },
+                ),
+                CategoryRadioButton(
+                  label: 'Others',
+                  color: AppTheme.kPinkColor,
+                  groupValue: addTask.taskCategory,
+                  categoryValue: TaskCategory.others,
+                  onChanged: (value) {
+                    setState(() {
+                      addTask.taskCategory = value as TaskCategory;
+                    });
+                  },
                 ),
               ],
             ),

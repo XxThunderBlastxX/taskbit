@@ -32,6 +32,8 @@ class AddTask extends StateNotifier<AddTaskState> {
   FocusNode titleFocusNode = FocusNode();
   FocusNode descriptionFocusNode = FocusNode();
 
+  TaskCategory taskCategory = TaskCategory.personal;
+
   Future<void> createTask() async {
     state = AddTaskLoading();
     final res = await _taskRepository.createTask(
@@ -40,7 +42,7 @@ class AddTask extends StateNotifier<AddTaskState> {
         title: titleController.text,
         description: descriptionController.text,
         isComplete: false,
-        category: TaskCategory.personal,
+        category: taskCategory,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       ),
@@ -49,6 +51,7 @@ class AddTask extends StateNotifier<AddTaskState> {
       (task) {
         titleController.clear();
         descriptionController.clear();
+        taskCategory = TaskCategory.personal;
         state = AddTaskSuccess(task: task);
       },
       (failure) => state = AddTaskFailure(
