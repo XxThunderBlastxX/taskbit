@@ -26,10 +26,19 @@ class AppTheme {
       ),
     ),
     fontFamily: GoogleFonts.bungee().fontFamily,
-    tabBarTheme: const TabBarTheme(
+    tabBarTheme: TabBarTheme(
       indicatorColor: Colors.black87,
       labelColor: Colors.black87,
       unselectedLabelColor: Colors.black54,
+      labelStyle: GoogleFonts.bungee(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+      ),
+      unselectedLabelStyle: GoogleFonts.bungee(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+      ),
+      labelPadding: EdgeInsets.only(bottom: 6.h),
       splashFactory: InkRipple.splashFactory,
       indicatorSize: TabBarIndicatorSize.label,
     ),

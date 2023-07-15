@@ -8,6 +8,8 @@ import '../../../app/common/widgets/widgets.dart';
 import '../../../app/error/error.dart';
 import '../../../app/theme/theme.dart';
 import '../../../provider/global_providers.dart';
+import '../../completed_tasks/presentation/completed_tab.dart';
+import '../../on_progress_tasks/presentation/on_progress_tab.dart';
 import 'provider/add_task_provider.dart';
 import 'state/add_task.dart';
 import 'widgets/add_new_task_header.dart';
@@ -41,42 +43,65 @@ class TasksScreen extends ConsumerWidget {
       }
     });
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading: CircleAvatar(
-          backgroundColor: Colors.black87,
-          child: Padding(
-            padding: const EdgeInsets.all(3.5),
-            child: avatar,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: CircleAvatar(
+            backgroundColor: Colors.black87,
+            child: Padding(
+              padding: const EdgeInsets.all(3.5),
+              child: avatar,
+            ),
+          ),
+          leadingWidth: 80.w,
+          bottom: PreferredSize(
+            preferredSize: Size(1.sw, 82.h),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                children: [
+                  const AddNewTaskHeader(),
+                  18.verticalSpace,
+                  const TabBar(
+                    tabs: [
+                      Text('On Progress'),
+                      Text('Completed'),
+                    ],
+                    physics: BouncingScrollPhysics(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          title: RichText(
+            text: TextSpan(
+              text: 'Hello,',
+              style: AppTheme.theme.textTheme.labelSmall!.copyWith(
+                color: Colors.black54,
+                fontSize: 13.sp,
+              ),
+              children: [
+                TextSpan(
+                  text: '\n${localUser!.name}',
+                  style: AppTheme.theme.textTheme.labelSmall!,
+                ),
+              ],
+            ),
           ),
         ),
-        leadingWidth: 80.w,
-        title: RichText(
-          text: TextSpan(
-            text: 'Hello,',
-            style: AppTheme.theme.textTheme.labelSmall!.copyWith(
-              color: Colors.black54,
-              fontSize: 13.sp,
-            ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w,
+            vertical: 8.h,
+          ),
+          child: const TabBarView(
             children: [
-              TextSpan(
-                text: '\n${localUser!.name}',
-                style: AppTheme.theme.textTheme.labelSmall!,
-              ),
+              OnProgressTab(),
+              CompletedTab(),
             ],
           ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 20.w,
-          vertical: 8.h,
-        ),
-        child: const Column(
-          children: [
-            AddNewTaskHeader(),
-          ],
         ),
       ),
     );
