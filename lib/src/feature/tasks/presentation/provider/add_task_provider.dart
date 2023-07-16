@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../provider/global_providers.dart';
+import '../../../../provider/provider.dart';
 import '../../../auth/domain/model/user/user.dart';
 import '../../data/repository/task_repository.dart';
 import '../../domain/model/task_model/task_model.dart';

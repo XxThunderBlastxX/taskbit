@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../app/common/utils/random_avatar.dart';
 import '../../../app/theme/theme.dart';
-import '../../../provider/global_providers.dart';
+import '../../../provider/provider.dart';
 import '../../completed_tasks/presentation/completed_tab.dart';
 import '../../on_progress_tasks/presentation/on_progress_tab.dart';
 import '../data/repository/task_repository.dart';
