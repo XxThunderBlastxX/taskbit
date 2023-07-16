@@ -10,12 +10,12 @@ import '../../../auth/domain/model/user/user.dart';
 import '../../domain/model/task_model/task_model.dart';
 import '../interface/task_interface.dart';
 
-final databaseIdProvider = Provider.autoDispose<String>(
-    (ref) => ref.watch(envProvider('DATABASE_ID')));
-final collectionIdProvider = Provider.autoDispose<String>(
-    (ref) => ref.watch(envProvider('COLLECTION_ID')));
+final databaseIdProvider =
+    Provider<String>((ref) => ref.watch(envProvider('DATABASE_ID')));
+final collectionIdProvider =
+    Provider<String>((ref) => ref.watch(envProvider('COLLECTION_ID')));
 
-final taskRepositoryProvider = Provider.autoDispose(
+final taskRepositoryProvider = Provider(
   (ref) => TaskRepository(
     database: Databases(ref.watch(clientProvider)),
     user: ref.watch(localUserProvider)!,
@@ -101,7 +101,7 @@ class TaskRepository extends ITask {
         collectionId: _collectionId,
         documentId: docId,
         data: {
-          'isComplete': true,
+          'isCompleted': true,
           'updatedAt': DateTime.now().toIso8601String().toString(),
         },
       );
@@ -129,7 +129,7 @@ class TaskRepository extends ITask {
         data: {
           'title': task.title,
           'description': task.description,
-          'isComplete': task.isComplete,
+          'isCompleted': task.isCompleted,
           'updatedAt': DateTime.now().toIso8601String().toString(),
         },
       );

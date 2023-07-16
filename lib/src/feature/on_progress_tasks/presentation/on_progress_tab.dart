@@ -8,38 +8,16 @@ class OnProgressTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final taskList = ref.watch(getAllTaskListProvider);
+    final taskList = ref.watch(taskNotifierProvider);
 
-    return taskList.when(
-      data: (tasks) => tasks.fold(
-        (docList) => ListView.builder(
-          itemCount: docList.documents.length,
-          itemBuilder: (BuildContext context, int index) {
-            final task = docList.documents[index];
-            if (!task.data['isComplete']) {
-              return ListTile(
-                title: Text(task.data['title']),
-                subtitle: Text(task.data['description']),
-              );
-            } else {
-              return const Center(
-                child: Text('No task on progress'),
-              );
-            }
-          },
-        ),
-        (failure) => Center(
-          child: Text(failure.message),
-        ),
-      ),
-      error: (err, stackTrace) {
-        return Center(
-          child: Text(err.toString()),
+    return ListView.builder(
+      itemCount: taskList.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(taskList[index].title),
+          subtitle: Text(taskList[index].description),
         );
       },
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
     );
   }
 }

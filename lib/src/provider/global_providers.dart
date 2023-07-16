@@ -24,6 +24,12 @@ final accountProvider = Provider<Account>(
   },
 );
 
+final appwriteStreamProvider = Provider(
+  (ref) => Realtime(
+    ref.watch(clientProvider),
+  ),
+);
+
 final envProvider = Provider.family<String, String>(
   name: "envProvider",
   (ref, key) {

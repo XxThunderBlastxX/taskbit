@@ -43,7 +43,7 @@ class AddTask extends StateNotifier<AddTaskState> {
         userId: _localUser!.id,
         title: titleController.text,
         description: descriptionController.text,
-        isComplete: false,
+        isCompleted: false,
         category: taskCategory,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),

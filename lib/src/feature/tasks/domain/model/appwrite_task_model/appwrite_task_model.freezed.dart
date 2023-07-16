@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'task_model.dart';
+part of 'appwrite_task_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,33 +14,41 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TaskModel _$TaskModelFromJson(Map<String, dynamic> json) {
-  return _TaskModel.fromJson(json);
+AppwriteTaskModel _$AppwriteTaskModelFromJson(Map<String, dynamic> json) {
+  return _AppwriteTaskModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TaskModel {
+mixin _$AppwriteTaskModel {
+  String get $id => throw _privateConstructorUsedError;
+  String get $collectionId => throw _privateConstructorUsedError;
+  String get $databaseId => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  bool get isCompleted => throw _privateConstructorUsedError;
+  bool get isCompleted =>
+      throw _privateConstructorUsedError; // TODO: Change to isCompleted
   TaskCategory get category => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TaskModelCopyWith<TaskModel> get copyWith =>
+  $AppwriteTaskModelCopyWith<AppwriteTaskModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TaskModelCopyWith<$Res> {
-  factory $TaskModelCopyWith(TaskModel value, $Res Function(TaskModel) then) =
-      _$TaskModelCopyWithImpl<$Res, TaskModel>;
+abstract class $AppwriteTaskModelCopyWith<$Res> {
+  factory $AppwriteTaskModelCopyWith(
+          AppwriteTaskModel value, $Res Function(AppwriteTaskModel) then) =
+      _$AppwriteTaskModelCopyWithImpl<$Res, AppwriteTaskModel>;
   @useResult
   $Res call(
-      {String userId,
+      {String $id,
+      String $collectionId,
+      String $databaseId,
+      String userId,
       String title,
       String description,
       bool isCompleted,
@@ -50,9 +58,9 @@ abstract class $TaskModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
-    implements $TaskModelCopyWith<$Res> {
-  _$TaskModelCopyWithImpl(this._value, this._then);
+class _$AppwriteTaskModelCopyWithImpl<$Res, $Val extends AppwriteTaskModel>
+    implements $AppwriteTaskModelCopyWith<$Res> {
+  _$AppwriteTaskModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -62,6 +70,9 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? $id = null,
+    Object? $collectionId = null,
+    Object? $databaseId = null,
     Object? userId = null,
     Object? title = null,
     Object? description = null,
@@ -71,6 +82,18 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
+      $id: null == $id
+          ? _value.$id
+          : $id // ignore: cast_nullable_to_non_nullable
+              as String,
+      $collectionId: null == $collectionId
+          ? _value.$collectionId
+          : $collectionId // ignore: cast_nullable_to_non_nullable
+              as String,
+      $databaseId: null == $databaseId
+          ? _value.$databaseId
+          : $databaseId // ignore: cast_nullable_to_non_nullable
+              as String,
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -104,14 +127,18 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
 }
 
 /// @nodoc
-abstract class _$$_TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Res> {
-  factory _$$_TaskModelCopyWith(
-          _$_TaskModel value, $Res Function(_$_TaskModel) then) =
-      __$$_TaskModelCopyWithImpl<$Res>;
+abstract class _$$_AppwriteTaskModelCopyWith<$Res>
+    implements $AppwriteTaskModelCopyWith<$Res> {
+  factory _$$_AppwriteTaskModelCopyWith(_$_AppwriteTaskModel value,
+          $Res Function(_$_AppwriteTaskModel) then) =
+      __$$_AppwriteTaskModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String userId,
+      {String $id,
+      String $collectionId,
+      String $databaseId,
+      String userId,
       String title,
       String description,
       bool isCompleted,
@@ -121,16 +148,19 @@ abstract class _$$_TaskModelCopyWith<$Res> implements $TaskModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TaskModelCopyWithImpl<$Res>
-    extends _$TaskModelCopyWithImpl<$Res, _$_TaskModel>
-    implements _$$_TaskModelCopyWith<$Res> {
-  __$$_TaskModelCopyWithImpl(
-      _$_TaskModel _value, $Res Function(_$_TaskModel) _then)
+class __$$_AppwriteTaskModelCopyWithImpl<$Res>
+    extends _$AppwriteTaskModelCopyWithImpl<$Res, _$_AppwriteTaskModel>
+    implements _$$_AppwriteTaskModelCopyWith<$Res> {
+  __$$_AppwriteTaskModelCopyWithImpl(
+      _$_AppwriteTaskModel _value, $Res Function(_$_AppwriteTaskModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? $id = null,
+    Object? $collectionId = null,
+    Object? $databaseId = null,
     Object? userId = null,
     Object? title = null,
     Object? description = null,
@@ -139,7 +169,19 @@ class __$$_TaskModelCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
-    return _then(_$_TaskModel(
+    return _then(_$_AppwriteTaskModel(
+      $id: null == $id
+          ? _value.$id
+          : $id // ignore: cast_nullable_to_non_nullable
+              as String,
+      $collectionId: null == $collectionId
+          ? _value.$collectionId
+          : $collectionId // ignore: cast_nullable_to_non_nullable
+              as String,
+      $databaseId: null == $databaseId
+          ? _value.$databaseId
+          : $databaseId // ignore: cast_nullable_to_non_nullable
+              as String,
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -174,9 +216,12 @@ class __$$_TaskModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TaskModel implements _TaskModel {
-  const _$_TaskModel(
-      {required this.userId,
+class _$_AppwriteTaskModel implements _AppwriteTaskModel {
+  const _$_AppwriteTaskModel(
+      {required this.$id,
+      required this.$collectionId,
+      required this.$databaseId,
+      required this.userId,
       required this.title,
       required this.description,
       required this.isCompleted,
@@ -184,9 +229,15 @@ class _$_TaskModel implements _TaskModel {
       required this.createdAt,
       required this.updatedAt});
 
-  factory _$_TaskModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TaskModelFromJson(json);
+  factory _$_AppwriteTaskModel.fromJson(Map<String, dynamic> json) =>
+      _$$_AppwriteTaskModelFromJson(json);
 
+  @override
+  final String $id;
+  @override
+  final String $collectionId;
+  @override
+  final String $databaseId;
   @override
   final String userId;
   @override
@@ -195,6 +246,7 @@ class _$_TaskModel implements _TaskModel {
   final String description;
   @override
   final bool isCompleted;
+// TODO: Change to isCompleted
   @override
   final TaskCategory category;
   @override
@@ -204,14 +256,19 @@ class _$_TaskModel implements _TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel(userId: $userId, title: $title, description: $description, isCompleted: $isCompleted, category: $category, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'AppwriteTaskModel(\$id: ${$id}, \$collectionId: ${$collectionId}, \$databaseId: ${$databaseId}, userId: $userId, title: $title, description: $description, isCompleted: $isCompleted, category: $category, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TaskModel &&
+            other is _$_AppwriteTaskModel &&
+            (identical(other.$id, $id) || other.$id == $id) &&
+            (identical(other.$collectionId, $collectionId) ||
+                other.$collectionId == $collectionId) &&
+            (identical(other.$databaseId, $databaseId) ||
+                other.$databaseId == $databaseId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -228,36 +285,46 @@ class _$_TaskModel implements _TaskModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, title, description,
-      isCompleted, category, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, $id, $collectionId, $databaseId,
+      userId, title, description, isCompleted, category, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TaskModelCopyWith<_$_TaskModel> get copyWith =>
-      __$$_TaskModelCopyWithImpl<_$_TaskModel>(this, _$identity);
+  _$$_AppwriteTaskModelCopyWith<_$_AppwriteTaskModel> get copyWith =>
+      __$$_AppwriteTaskModelCopyWithImpl<_$_AppwriteTaskModel>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TaskModelToJson(
+    return _$$_AppwriteTaskModelToJson(
       this,
     );
   }
 }
 
-abstract class _TaskModel implements TaskModel {
-  const factory _TaskModel(
-      {required final String userId,
+abstract class _AppwriteTaskModel implements AppwriteTaskModel {
+  const factory _AppwriteTaskModel(
+      {required final String $id,
+      required final String $collectionId,
+      required final String $databaseId,
+      required final String userId,
       required final String title,
       required final String description,
       required final bool isCompleted,
       required final TaskCategory category,
       required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$_TaskModel;
+      required final DateTime updatedAt}) = _$_AppwriteTaskModel;
 
-  factory _TaskModel.fromJson(Map<String, dynamic> json) =
-      _$_TaskModel.fromJson;
+  factory _AppwriteTaskModel.fromJson(Map<String, dynamic> json) =
+      _$_AppwriteTaskModel.fromJson;
 
+  @override
+  String get $id;
+  @override
+  String get $collectionId;
+  @override
+  String get $databaseId;
   @override
   String get userId;
   @override
@@ -266,7 +333,7 @@ abstract class _TaskModel implements TaskModel {
   String get description;
   @override
   bool get isCompleted;
-  @override
+  @override // TODO: Change to isCompleted
   TaskCategory get category;
   @override
   DateTime get createdAt;
@@ -274,6 +341,6 @@ abstract class _TaskModel implements TaskModel {
   DateTime get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$_TaskModelCopyWith<_$_TaskModel> get copyWith =>
+  _$$_AppwriteTaskModelCopyWith<_$_AppwriteTaskModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -11,7 +11,7 @@ class TaskModel with _$TaskModel {
     required String userId,
     required String title,
     required String description,
-    required bool isComplete,
+    required bool isCompleted,
     required TaskCategory category,
     required DateTime createdAt,
     required DateTime updatedAt,
