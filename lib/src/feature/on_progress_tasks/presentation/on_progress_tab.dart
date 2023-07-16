@@ -13,32 +13,35 @@ class OnProgressTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final taskList = ref.watch(taskNotifierProvider);
 
-    return ListView.builder(
-      itemCount: taskList.length,
-      itemBuilder: (context, index) {
-        return taskList[index].isCompleted
-            ? const SizedBox()
-            : TaskTile(
-                title: taskList[index].title,
-                description: taskList[index].description,
-                category: taskList[index].category.name,
-                backgroundColor: taskList[index].category.taskCategoryColor,
-                onChanged: (value) =>
-                    ref.watch(taskRepositoryProvider).updateTask(
-                          docId: taskList[index].$id,
-                          task: TaskModel(
-                            userId: taskList[index].userId,
-                            title: taskList[index].title,
-                            description: taskList[index].description,
-                            isCompleted: value!,
-                            category: taskList[index].category,
-                            createdAt: taskList[index].createdAt,
-                            updatedAt: taskList[index].updatedAt,
-                          ),
-                        ),
-                value: taskList[index].isCompleted,
-              );
-      },
-    );
+    return taskList.isEmpty
+        ? const Center(child: Text('Opps You don\'t have any task yet :('))
+        : ListView.builder(
+            itemCount: taskList.length,
+            itemBuilder: (context, index) {
+              return taskList[index].isCompleted
+                  ? const SizedBox()
+                  : TaskTile(
+                      title: taskList[index].title,
+                      description: taskList[index].description,
+                      category: taskList[index].category.name,
+                      backgroundColor:
+                          taskList[index].category.taskCategoryColor,
+                      onChanged: (value) =>
+                          ref.watch(taskRepositoryProvider).updateTask(
+                                docId: taskList[index].$id,
+                                task: TaskModel(
+                                  userId: taskList[index].userId,
+                                  title: taskList[index].title,
+                                  description: taskList[index].description,
+                                  isCompleted: value!,
+                                  category: taskList[index].category,
+                                  createdAt: taskList[index].createdAt,
+                                  updatedAt: taskList[index].updatedAt,
+                                ),
+                              ),
+                      value: taskList[index].isCompleted,
+                    );
+            },
+          );
   }
 }
