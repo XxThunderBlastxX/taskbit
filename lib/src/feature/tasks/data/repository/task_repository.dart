@@ -124,7 +124,7 @@ class TaskRepository extends ITask {
       _log.i('Updating task($docId) 🐥');
       final models.Document doc = await _database.updateDocument(
         databaseId: _databaseId,
-        collectionId: _user.id,
+        collectionId: _collectionId,
         documentId: docId,
         data: {
           'title': task.title,

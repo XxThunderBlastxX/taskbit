@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:taskbit/src/feature/tasks/presentation/widgets/task_tile.dart';
 
+import '../../tasks/data/repository/task_repository.dart';
 import '../../tasks/domain/model/task_model/task_model.dart';
 import '../../tasks/presentation/provider/tasks_provider.dart';
+import '../../tasks/presentation/widgets/task_tile.dart';
 
 class OnProgressTab extends ConsumerWidget {
   const OnProgressTab({super.key});
@@ -15,12 +16,28 @@ class OnProgressTab extends ConsumerWidget {
     return ListView.builder(
       itemCount: taskList.length,
       itemBuilder: (context, index) {
-        return TaskTile(
-          title: taskList[index].title,
-          description: taskList[index].description,
-          category: taskList[index].category.name,
-          backgroundColor: taskList[index].category.taskCategoryColor,
-        );
+        return taskList[index].isCompleted
+            ? const SizedBox()
+            : TaskTile(
+                title: taskList[index].title,
+                description: taskList[index].description,
+                category: taskList[index].category.name,
+                backgroundColor: taskList[index].category.taskCategoryColor,
+                onChanged: (value) =>
+                    ref.watch(taskRepositoryProvider).updateTask(
+                          docId: taskList[index].$id,
+                          task: TaskModel(
+                            userId: taskList[index].userId,
+                            title: taskList[index].title,
+                            description: taskList[index].description,
+                            isCompleted: value!,
+                            category: taskList[index].category,
+                            createdAt: taskList[index].createdAt,
+                            updatedAt: taskList[index].updatedAt,
+                          ),
+                        ),
+                value: taskList[index].isCompleted,
+              );
       },
     );
   }

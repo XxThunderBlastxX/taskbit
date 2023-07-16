@@ -10,6 +10,8 @@ class TaskTile extends ConsumerWidget {
   final String description;
   final String category;
   final Color backgroundColor;
+  final void Function(bool?)? onChanged;
+  final bool value;
 
   const TaskTile({
     super.key,
@@ -17,6 +19,8 @@ class TaskTile extends ConsumerWidget {
     required this.description,
     required this.category,
     required this.backgroundColor,
+    required this.onChanged,
+    required this.value,
   });
 
   @override
@@ -27,9 +31,9 @@ class TaskTile extends ConsumerWidget {
         horizontal: 16.w,
       ),
       child: StyledContainer(
-        height: 110.h,
+        height: 113.h,
         backgroundColor: backgroundColor,
-        child: ListTile(
+        child: CheckboxListTile(
           title: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,6 +57,12 @@ class TaskTile extends ConsumerWidget {
               color: Colors.black.withOpacity(0.65),
             ),
           ),
+          value: value,
+          onChanged: onChanged,
+          controlAffinity: ListTileControlAffinity.leading,
+          enabled: true,
+          checkboxShape: const CircleBorder(eccentricity: 0.2),
+          enableFeedback: true,
         ),
       ),
     );
