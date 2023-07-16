@@ -15,7 +15,7 @@ _$_AppwriteTaskModel _$$_AppwriteTaskModelFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       description: json['description'] as String,
       isCompleted: json['isCompleted'] as bool,
-      category: $enumDecode(_$TaskCategoryEnumMap, json['category']),
+      category: TaskCategory.values.byName(json['category'] as String),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );

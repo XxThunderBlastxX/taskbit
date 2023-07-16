@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taskbit/src/feature/tasks/domain/model/appwrite_task_model/appwrite_task_model.dart';
 
 import '../../../app/common/utils/random_avatar.dart';
 import '../../../app/theme/theme.dart';
@@ -9,6 +8,8 @@ import '../../../provider/global_providers.dart';
 import '../../completed_tasks/presentation/completed_tab.dart';
 import '../../on_progress_tasks/presentation/on_progress_tab.dart';
 import '../data/repository/task_repository.dart';
+import '../domain/model/appwrite_task_model/appwrite_task_model.dart';
+import '../domain/model/task_model/task_model.dart';
 import 'provider/tasks_provider.dart';
 import 'widgets/add_new_task_header.dart';
 
@@ -27,27 +28,35 @@ class _TasksScreenState extends ConsumerState<TasksScreen> {
     subscribeDatabase();
   }
 
-  void loadAllTasks() {
-    final res = ref.watch(getDocumentListProvider);
+  void loadAllTasks() async {
+    final taskRepo = ref.watch(taskRepositoryProvider);
     final taskList = ref.watch(taskNotifierProvider.notifier);
 
-    res.whenData(
-      (docList) => docList.documents.map(
-        (doc) => taskList.addTask(
-          AppwriteTaskModel(
-            $id: doc.$id,
-            $collectionId: doc.$collectionId,
-            $databaseId: doc.$databaseId,
-            userId: doc.data['userId'],
-            title: doc.data['title'],
-            description: doc.data['description'],
-            isCompleted: doc.data['isCompleted'],
-            category: doc.data['category'],
-            createdAt: doc.data['createdAt'],
-            updatedAt: doc.data['updatedAt'],
-          ),
-        ),
-      ),
+    final res = await taskRepo.getAllTasks();
+
+    res.fold(
+      (docList) {
+        taskList.addTaskList(
+          docList.documents.map(
+            (doc) {
+              return AppwriteTaskModel(
+                $id: doc.$id,
+                $collectionId: doc.$collectionId,
+                $databaseId: doc.$databaseId,
+                userId: doc.data['userId'] as String,
+                title: doc.data['title'] as String,
+                description: doc.data['description'] as String,
+                isCompleted: doc.data['isCompleted'] as bool,
+                category:
+                    TaskCategory.values.byName(doc.data['category'] as String),
+                createdAt: DateTime.parse(doc.data['createdAt'] as String),
+                updatedAt: DateTime.parse(doc.data['updatedAt'] as String),
+              );
+            },
+          ).toList(),
+        );
+      },
+      (failure) => null,
     );
   }
 

@@ -11,7 +11,7 @@ _$_TaskModel _$$_TaskModelFromJson(Map<String, dynamic> json) => _$_TaskModel(
       title: json['title'] as String,
       description: json['description'] as String,
       isCompleted: json['isCompleted'] as bool,
-      category: $enumDecode(_$TaskCategoryEnumMap, json['category']),
+      category: TaskCategory.values.byName(json['category'] as String),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
