@@ -41,11 +41,16 @@ class AddNewTaskHeader extends ConsumerWidget {
           ),
           clickable: true,
           height: 45.h,
-          width: 115.w,
+          width: 120.w,
           child: Center(
-            child: Text(
-              '+ New Task',
-              style: AppTheme.theme.textTheme.labelSmall,
+            child: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Text(
+                '+ New Task',
+                style: AppTheme.theme.textTheme.labelSmall!.copyWith(
+                  fontSize: 14.sp,
+                ),
+              ),
             ),
           ),
         ),

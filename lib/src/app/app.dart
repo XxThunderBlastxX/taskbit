@@ -13,6 +13,9 @@ class MyApp extends ConsumerWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 640),
       minTextAdapt: true,
+      scaleByHeight: false,
+      useInheritedMediaQuery: true,
+      splitScreenMode: true,
       builder: (context, child) => MaterialApp.router(
         title: 'Taskbit',
         debugShowCheckedModeBanner: false,
