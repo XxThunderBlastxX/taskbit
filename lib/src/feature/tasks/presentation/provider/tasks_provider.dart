@@ -45,7 +45,7 @@ class TaskProvider extends StateNotifier<List<AppwriteTaskModel>> {
   void setTaskComplete(AppwriteTaskModel task) {
     state = state.map((appwriteTaskModel) {
       if (appwriteTaskModel.$id == task.$id) {
-        return appwriteTaskModel.copyWith(isCompleted: true);
+        return appwriteTaskModel.copyWith(isCompleted: task.isCompleted);
       }
       return appwriteTaskModel;
     }).toList();

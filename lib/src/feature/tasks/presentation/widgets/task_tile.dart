@@ -55,6 +55,7 @@ class TaskTile extends ConsumerWidget {
             description,
             style: AppTheme.theme.textTheme.labelSmall!.copyWith(
               color: Colors.black.withOpacity(0.65),
+              fontSize: 14.sp,
             ),
           ),
           value: value,
