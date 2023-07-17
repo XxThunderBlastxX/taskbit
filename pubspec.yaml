@@ -1,6 +1,8 @@
 name: taskbit
 description: A new Flutter project.
 
+repository: https://github.com/XxThunderBlastxX/taskbit
+
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -22,12 +24,12 @@ dependencies:
   equatable: ^2.0.5
   dartz: ^0.10.1
   shared_preferences: ^2.2.0
-  flutter_secure_storage: ^8.0.0
   flutter_dotenv: ^5.1.0
   flutter_screenutil: ^5.8.4
   random_avatar: ^0.0.8
   uuid: ^3.0.7
   intl: ^0.18.1
+
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +38,8 @@ dev_dependencies:
   build_runner: ^2.4.6
   freezed: ^2.3.5
   json_serializable: ^6.7.1
+  flutter_native_splash: ^2.3.1
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
