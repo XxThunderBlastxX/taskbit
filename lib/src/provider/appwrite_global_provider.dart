@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:taskbit/src/app/env/env.dart';
+
+import '../app/env/env.dart';
 
 final clientProvider = Provider<Client>(
   name: "appwriteClientProvider",
@@ -14,9 +15,7 @@ final clientProvider = Provider<Client>(
 
 final accountProvider = Provider<Account>(
   name: "appwriteAccountProvider",
-  (ref) {
-    return Account(ref.watch(clientProvider));
-  },
+  (ref) => Account(ref.watch(clientProvider)),
 );
 
 final appwriteStreamProvider = Provider(
