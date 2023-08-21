@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taskbit/src/app/env/env.dart';
 
 import '../../../app/common/utils/random_avatar.dart';
 import '../../../app/theme/theme.dart';
@@ -61,8 +62,8 @@ class _TasksScreenState extends ConsumerState<TasksScreen> {
   }
 
   void subscribeDatabase() {
-    final dbId = ref.watch(databaseIdProvider);
-    final collectionId = ref.watch(collectionIdProvider);
+    final String dbId = Env.databaseID;
+    final String collectionId = Env.collectionID;
     final taskList = ref.watch(taskNotifierProvider.notifier);
 
     final appwriteStream = ref.watch(appwriteStreamProvider);

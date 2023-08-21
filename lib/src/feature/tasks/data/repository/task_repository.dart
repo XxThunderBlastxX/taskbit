@@ -2,6 +2,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:taskbit/src/app/env/env.dart';
 
 import '../../../../app/error/error.dart';
 import '../../../../app/utils/utils.dart';
@@ -10,18 +11,13 @@ import '../../../auth/domain/model/user/user.dart';
 import '../../domain/model/task_model/task_model.dart';
 import '../interface/task_interface.dart';
 
-final databaseIdProvider =
-    Provider<String>((ref) => ref.watch(envProvider('DATABASE_ID')));
-final collectionIdProvider =
-    Provider<String>((ref) => ref.watch(envProvider('COLLECTION_ID')));
-
 final taskRepositoryProvider = Provider(
   (ref) => TaskRepository(
     database: Databases(ref.watch(clientProvider)),
     user: ref.watch(localUserProvider)!,
     log: ref.watch(styledLogProvider),
-    databaseId: ref.watch(databaseIdProvider),
-    collectionId: ref.watch(collectionIdProvider),
+    databaseId: Env.databaseID,
+    collectionId: Env.collectionID,
   ),
 );
 

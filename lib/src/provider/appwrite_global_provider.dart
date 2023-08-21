@@ -1,13 +1,13 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:taskbit/src/provider/provider.dart';
+import 'package:taskbit/src/app/env/env.dart';
 
 final clientProvider = Provider<Client>(
   name: "appwriteClientProvider",
   (ref) {
     return Client()
-      ..setEndpoint(ref.read(envProvider('APPWRITE_ENDPOINT')))
-      ..setProject(ref.read(envProvider('APPWRITE_PROJECT_ID')))
+      ..setEndpoint(Env.appwriteEndpoint)
+      ..setProject(Env.appwriteProjectID)
       ..setSelfSigned(status: true);
   },
 );
