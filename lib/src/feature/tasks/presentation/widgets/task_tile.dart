@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,45 +26,58 @@ class TaskTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: 8.h,
-        horizontal: 16.w,
-      ),
-      child: StyledContainer(
-        height: 113.h,
-        backgroundColor: backgroundColor,
-        child: CheckboxListTile(
-          title: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Category : $category',
-                style: AppTheme.theme.textTheme.labelSmall!.copyWith(
-                  color: Colors.black.withOpacity(0.65),
-                  fontSize: 10.6.sp,
+    return Animate(
+      effects: [
+        FadeEffect(
+          duration: 450.ms,
+          delay: 100.ms,
+        ),
+        ShimmerEffect(delay: 350.ms),
+        const MoveEffect(
+          begin: Offset(-16, 0),
+          curve: Curves.easeOutQuad,
+        ),
+      ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: 8.h,
+          horizontal: 16.w,
+        ),
+        child: StyledContainer(
+          height: 113.h,
+          backgroundColor: backgroundColor,
+          child: CheckboxListTile(
+            title: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Category : $category',
+                  style: AppTheme.theme.textTheme.labelSmall!.copyWith(
+                    color: Colors.black.withOpacity(0.65),
+                    fontSize: 10.6.sp,
+                  ),
                 ),
-              ),
-              Text(
-                title,
-                style: AppTheme.theme.textTheme.labelMedium,
-              ),
-            ],
-          ),
-          subtitle: Text(
-            description,
-            style: AppTheme.theme.textTheme.labelSmall!.copyWith(
-              color: Colors.black.withOpacity(0.65),
-              fontSize: 14.sp,
+                Text(
+                  title,
+                  style: AppTheme.theme.textTheme.labelMedium,
+                ),
+              ],
             ),
+            subtitle: Text(
+              description,
+              style: AppTheme.theme.textTheme.labelSmall!.copyWith(
+                color: Colors.black.withOpacity(0.65),
+                fontSize: 14.sp,
+              ),
+            ),
+            value: value,
+            onChanged: onChanged,
+            controlAffinity: ListTileControlAffinity.leading,
+            enabled: true,
+            checkboxShape: const CircleBorder(eccentricity: 0.2),
+            enableFeedback: true,
           ),
-          value: value,
-          onChanged: onChanged,
-          controlAffinity: ListTileControlAffinity.leading,
-          enabled: true,
-          checkboxShape: const CircleBorder(eccentricity: 0.2),
-          enableFeedback: true,
         ),
       ),
     );
