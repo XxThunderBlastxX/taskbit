@@ -29,6 +29,7 @@ dependencies:
   random_avatar: ^0.0.8
   uuid: ^3.0.7
   intl: ^0.18.1
+  envied: ^0.3.0+3
 
 
 dev_dependencies:
@@ -40,6 +41,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   flutter_native_splash: ^2.3.1
   flutter_launcher_icons: ^0.13.1
+  envied_generator: ^0.3.0+3
 
 flutter:
   uses-material-design: true

@@ -26,8 +26,7 @@ mixin _$AppwriteTaskModel {
   String get userId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  bool get isCompleted =>
-      throw _privateConstructorUsedError; // TODO: Change to isCompleted
+  bool get isCompleted => throw _privateConstructorUsedError;
   TaskCategory get category => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
@@ -246,7 +245,6 @@ class _$_AppwriteTaskModel implements _AppwriteTaskModel {
   final String description;
   @override
   final bool isCompleted;
-// TODO: Change to isCompleted
   @override
   final TaskCategory category;
   @override
@@ -333,7 +331,7 @@ abstract class _AppwriteTaskModel implements AppwriteTaskModel {
   String get description;
   @override
   bool get isCompleted;
-  @override // TODO: Change to isCompleted
+  @override
   TaskCategory get category;
   @override
   DateTime get createdAt;
